@@ -53,7 +53,7 @@ class CRM
     print "Enter a Note: "
     note = gets.chomp
 
-    Contact.create(first_name, last_name, email, note)
+    Contact.create( first_name: first_name, last_name: last_name, email: email, note: note)
     puts "Contact added."
     pause_screen
   end
@@ -76,7 +76,7 @@ class CRM
       display_input_msg(user_selected)
       user_input = gets.chomp
       modify_to = get_attribute_name(user_selected)
-      a_contact.update(modify_to, user_input)
+      a_contact.update({modify_to => user_input})
       puts "Contact modified."
     end
     pause_screen
@@ -160,7 +160,7 @@ class CRM
     end
 
     search_by = get_attribute_name(user_selected)
-    a_contact = Contact.find_by(search_by, user_input)
+    a_contact = Contact.find_by({search_by => user_input})
     if a_contact == nil
       puts "#{search_by}: #{user_input} not found!"
     else
